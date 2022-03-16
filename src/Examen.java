@@ -1,6 +1,6 @@
 import java.util.*;
 
-//P
+//Profe ahi puede ver todos los intentos que hice... pero solo encontre una solucion
 public class Examen {
     List<Integer> solucion = new ArrayList<>();
 
