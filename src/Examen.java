@@ -2,23 +2,63 @@ import java.util.*;
 
 //Profe ahi puede ver todos los intentos que hice... pero solo encontre una solucion
 public class Examen {
-    List<Integer> solucion = new ArrayList<>();
+
+    static int[][] m = {{0,4,0,2,0,0},
+                        {4,0,3,0,3,0},
+                        {0,3,0,0,0,2},
+                        {2,0,0,0,3,0},
+                        {0,3,0,3,0,1},
+                        {0,0,2,0,1,0}};
+
+    static int[] numPueblos = new int [6];
+    static List<Integer> solucion = new ArrayList<>();
+    static int sumaDistancia = 0;
+
+    public static void rPueblo(int i, int j){
+
+        numPueblos[i] = 7;
+
+        if (m[i][j] != 0){
+            solucion.add(j);
+            sumaDistancia += m[i][j]; //Sumatoria de la distancia
+        }
+        else {
+            for (int k = 0; k < 3; k++){
+                if (m[i][k] != 0 && numPueblos[k] != 7) {
+                    solucion.add(k); // Añadir los pueblos
+                    sumaDistancia += m[i][k];//Sumatoria de la distancia
+                    rPueblo(k,j);
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.println("Introduzca el pueblo donde quiere empezar: ");
+            int i = scanner.nextInt();
+            System.out.println("Introduzca el pueblo donde quiere terminar: ");
+            int j = scanner.nextInt();
+            
+            rPueblo(i,j);
+
+            System.out.println("Recorrido desde el pueblo "+(i)+" Hasta el pueblo "+ (j) +": "+ solucion);
+            System.out.println("Distancia recorrida: "+ sumaDistancia);
+        }
+    }
+}
 
     /*
-    int[][] m = {{0,4,0,2,0,0},
-                {4,0,3,0,3,0},
-                {0,3,0,0,0,2},
-                {2,0,0,0,3,0},
-                {0,3,0,3,0,1},
-                {0,0,2,0,1,0}};
-
-     */
+    List<Integer> solucion = new ArrayList<>();
     int[] a = {0,4,0,2,0,0};
     int[] b = {4,0,3,0,3,0};
     int[] c = {0,3,0,0,0,2};
     int[] d = {2,0,0,0,3,0};
     int[] e = {0,3,0,3,0,1};
     int[] f = {0,0,2,0,1,0};
+
+     */
     /*
     public void print(){
         System.out.println();
@@ -31,6 +71,7 @@ public class Examen {
         System.out.println();
     }
      */
+    /*
     public void sinbacktracking(int n){
         for (int i = n; i < a.length; i++) {
             if (a[i] != 0){
@@ -77,6 +118,8 @@ public class Examen {
         System.out.println("La suma de las distancias entre el pueblo 1 al 5 son: " + sumador);
 
     }
+
+     */
     /*
     public void backtracking(int[][]m, int i, int j){
             int contador = 0;
@@ -133,16 +176,20 @@ public class Examen {
         return true;
     }
      */
+    /*
 
     public void resolver(){
         //print();
-        sinbacktracking(0);
+        //sinbacktracking(0);
         //backtracking(2);
     }
+    /*
     public static void main(String[] args) {
 
         Examen examen = new Examen();
 
         examen.resolver();
     }
-}
+
+     */
+//}
